@@ -9,15 +9,15 @@ type HomePageProps = {
 
 export const HomePage = () => {
   const films = useFilmsStore((state) => state.films);
-  const [isEmpty, setisEmpty] = useState(true);
+
   return (
     <div className="HomePage">
       <div className="film__list">
-        {isEmpty == false &&
+        {films.length > 0 &&
           films.map((film) => (
             <div className="films_card">
               <div className="films_card_poster">
-                <img src="" alt="" />
+                <img src="src\img\52.webp" alt="" />
               </div>
               <div className="films_card_description">
                 <div className="films_card_title">
@@ -26,7 +26,6 @@ export const HomePage = () => {
                   <div className="films_card_popularity">{film.popularity}</div>
                 </div>
                 <div className="films_card_description">
-                  <p>{film.overview}</p>
                   <p>{film.original_language}</p>
                 </div>
               </div>

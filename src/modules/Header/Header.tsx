@@ -4,13 +4,13 @@ import { getFilm } from "../../helper/getFilm";
 import { useFilmsStore } from "../../Film/FilmStore";
 
 export const Header = () => {
-  const { addFilm } = useFilmsStore((state) => state.actions);
-  console.log(addFilm);
+  const { addFilm, clearFilms } = useFilmsStore((state) => state.actions);
   const [films, setFilms] = useState([]);
   const [title, setTitle] = useState("");
   const onClick = async () => {
     const data = await getFilm(title);
     setFilms(data.results);
+    clearFilms();
     addFilm(data.results);
   };
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
