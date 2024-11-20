@@ -14,6 +14,7 @@ export const Header = () => {
     addFilm(data.results);
   };
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault();
     const value = event.target.value;
     setTitle(value);
   };

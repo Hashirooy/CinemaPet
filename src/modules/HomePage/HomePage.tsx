@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { Film } from "../../Film/Film";
 import "./HomePage.css";
 import { useFilmsStore } from "../../Film/FilmStore";
+import { Banner } from "../Banner/Banner";
 
 type HomePageProps = {
-  films: Film[];
+  Banner: React.ReactNode;
 };
 
 export const HomePage = () => {
@@ -12,10 +12,13 @@ export const HomePage = () => {
 
   return (
     <div className="HomePage">
+      <div className="HomePage_banner">
+        <Banner />
+      </div>
       <div className="film__list">
         {films.length > 0 &&
-          films.map((film) => (
-            <div className="films_card">
+          films.map((film, index) => (
+            <div className="films_card" key={index}>
               <div className="films_card_poster">
                 <img src="src\img\52.webp" alt="" />
               </div>
