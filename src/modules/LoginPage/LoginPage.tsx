@@ -5,6 +5,11 @@ interface credential {
   password: string;
 }
 
+interface checks {
+  isEmpty: boolean;
+  minLength: number;
+}
+
 // const useValidation = (value: string, validators: {}) => {
 //   const [isEmpty, setIsEmtty] = useState(false);
 //   useEffect(() => {
@@ -44,6 +49,7 @@ interface credential {
 export const LoginPage = () => {
   const [isEmailValid, setIsEmailValid] = useState(false);
   const [isPasswordValid, setIsPasswordValid] = useState(false);
+  const [isValid, setIsValid] = useState(false);
   const [credential, setCredential] = useState<credential>({
     email: "",
     password: "",
@@ -53,21 +59,39 @@ export const LoginPage = () => {
   };
 
   const onClick = () => {
-    validator(credential, { isEmpty: true, minLength: 3 });
+    validation();
   };
 
-  const validator = (value: credential, validations: any) => {
+  const validation = () => {
+    console.log("мы тут");
+    const emailField = validator(credential.email, {
+      isEmpty: true,
+      minLength: 3,
+    });
+    const passwordField = validator(credential.password, {
+      isEmpty: true,
+      minLength: 3,
+    });
+    if (emailField) {
+      setIsEmailValid(true);
+    } else {
+      setIsEmailValid(false);
+    }
+    if (passwordField) {
+      setIsPasswordValid(true);
+    } else {
+      setIsPasswordValid(false);
+    }
+  };
+
+  const validator = (value: any, validations: checks): boolean | undefined => {
     for (const validation in validations) {
       switch (validation) {
         case "isEmpty":
-          value.email.length || value.password.length > 0
-            ? (setIsEmailValid(false), setIsPasswordValid(false))
-            : (setIsEmailValid(true), setIsPasswordValid(true));
+          return value.length || value.length > 0 ? false : true;
 
         case "minLength":
-          value.password.length < validations[validation]
-            ? setIsPasswordValid(true)
-            : setIsPasswordValid(false);
+          return value.length < validations[validation] ? true : false;
       }
     }
   };
