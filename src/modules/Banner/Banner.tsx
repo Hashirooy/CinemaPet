@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Banner.css";
-import { getTopRatedFilms } from "../../helper/getTopRated";
+
 import { Film } from "../../Film/Film";
 
 export const Banner = () => {
@@ -10,6 +10,7 @@ export const Banner = () => {
       method: "GET",
       headers: {
         accept: "application/json",
+        origin: "image.tmdb.org",
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzYzJlMDFlZTVkNWI3OTExNzQ2YTA0NmYwYTM2NjhmMCIsIm5iZiI6MTczMjEyNTI4Ni4zNzczNDM3LCJzdWIiOiI2NzMwZTM3ZGFjOTcwYWFkMmE4ZGEwYjMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.afXTVLljiUuDbT9qToFizxrB5y81hK7pZ0tE1cu18Js",
       },
@@ -20,14 +21,22 @@ export const Banner = () => {
     );
 
     const data = await res.json();
+
+    const randomFilm =
+      data.results[Math.floor(Math.random() * data.results.length)];
+    const full_path =
+      "https://image.tmdb.org/t/p/original" + randomFilm?.poster_path;
+
     setFilm((prev) => ({
       ...prev,
-      ...data.results[Math.floor(Math.random() * 11)],
+      ...randomFilm,
     }));
+
+    const getPoster = await fetch(full_path, options);
+    console.log(getPoster);
   };
   useEffect(() => {
     const data = getTopRatedFilms();
-    console.log(film);
   }, []);
   return (
     <div className="banner">
