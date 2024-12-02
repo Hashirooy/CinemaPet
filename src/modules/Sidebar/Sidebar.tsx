@@ -33,7 +33,7 @@ export const SideBar = () => {
           <a href="">Телеканалы</a>
         </div>
         <div className="sibebar-options_element">
-          <img src="src\img\media.svg" alt="" />
+          <img src="src\img\media.svg " alt="" />
           <a href="">Онлайн-кинотеатр</a>
         </div>
       </div>

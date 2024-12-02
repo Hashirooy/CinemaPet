@@ -63,7 +63,6 @@ export const LoginPage = () => {
   };
 
   const validation = () => {
-    console.log("мы тут");
     const emailField = validator(credential.email, {
       isEmpty: true,
       minLength: 3,
@@ -95,7 +94,6 @@ export const LoginPage = () => {
       }
     }
   };
-  console.log(isEmailValid, isPasswordValid);
 
   // const email = useInput("", { isEmty: true });
   // const password = useInput("", { isEmty: true });

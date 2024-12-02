@@ -2,11 +2,14 @@ import { useState } from "react";
 import "./Header.css";
 import { getFilm } from "../../helper/getFilm";
 import { useFilmsStore } from "../../Film/FilmStore";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const { addFilm, clearFilms } = useFilmsStore((state) => state.actions);
   const [films, setFilms] = useState([]);
   const [title, setTitle] = useState("");
+  const navigate = useNavigate();
+
   const onClick = async () => {
     const data = await getFilm(title);
     setFilms(data.results);
@@ -17,6 +20,10 @@ export const Header = () => {
     event.preventDefault();
     const value = event.target.value;
     setTitle(value);
+  };
+
+  const onClickNavLogin = () => {
+    navigate("/login");
   };
   return (
     <div className="header">
@@ -40,7 +47,9 @@ export const Header = () => {
       </form>
       <div className="header__account">
         <div>
-          <button className="film-search_regbutton">Войти</button>
+          <button className="film-search_regbutton" onClick={onClickNavLogin}>
+            Войти
+          </button>
         </div>
         <button className="film-search_loginbutton">Регистрация</button>
       </div>
