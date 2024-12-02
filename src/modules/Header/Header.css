@@ -40,14 +40,14 @@
 
 .film-search_regbutton {
   height: 35px;
-  width: 100px;
+  width: 100%;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .film-search_loginbutton {
   height: 35px;
-  width: 100px;
+  width: 100%;
   border-radius: 5px;
   cursor: pointer;
 }

@@ -10,6 +10,7 @@ export const Header = () => {
   const [title, setTitle] = useState("");
   const navigate = useNavigate();
 
+
   const onClick = async () => {
     const data = await getFilm(title);
     setFilms(data.results);
@@ -21,7 +22,9 @@ export const Header = () => {
     const value = event.target.value;
     setTitle(value);
   };
-
+  const onClickNaviggateRegistration = ()=>{
+    navigate('/registration')
+  }
   const onClickNavLogin = () => {
     navigate("/login");
   };
@@ -51,7 +54,7 @@ export const Header = () => {
             Войти
           </button>
         </div>
-        <button className="film-search_loginbutton">Регистрация</button>
+        <button className="film-search_loginbutton" onClick={onClickNaviggateRegistration}>Регистрация</button>
       </div>
     </div>
   );

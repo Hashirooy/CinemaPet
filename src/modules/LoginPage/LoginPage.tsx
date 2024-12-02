@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./LoginPage.css";
+import { useNavigate } from "react-router-dom";
 interface credential {
   email: string;
   password: string;
@@ -54,9 +55,15 @@ export const LoginPage = () => {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate()
   const onChange = (values: Partial<credential>) => {
     setCredential((prev) => ({ ...prev, ...values }));
   };
+
+  const onClickNavigate = ()=>{
+    navigate('/registration')
+  }
 
   const onClick = () => {
     validation();
@@ -135,7 +142,7 @@ export const LoginPage = () => {
             Войти
           </button>
 
-          <button className="film-search_loginbutton">Регистрация</button>
+          <button className="film-search_loginbutton" onClick={onClickNavigate}>Регистрация</button>
         </div>
       </div>
     </div>
