@@ -4,6 +4,7 @@ import { useFilmsStore } from "../../Film/FilmStore";
 import { Banner } from "../Banner/Banner";
 import { useEffect, useState } from "react";
 import { getTopRatedFilms } from "../../helper/getTopRated";
+import { useNavigate } from "react-router-dom";
 
 type HomePageProps = {
   Banner: React.ReactNode;
@@ -12,6 +13,12 @@ type HomePageProps = {
 export const HomePage = () => {
   const films = useFilmsStore((state) => state.films);
   const [topFilms, setTopFilms] = useState<Film[]>([]);
+  const navigate = useNavigate()
+
+  const onClickFilmTitle = (id:string)=>{
+    navigate(`/film/${id}`)
+  }
+
   useEffect(() => {
     const getListFilm = async () => {
       const res = await getTopRatedFilms();
@@ -40,7 +47,9 @@ export const HomePage = () => {
               </div>
               <div className="films_card_title">
                 <div className="films_card__title">
-                  <h2>{film.title}</h2>
+                  <h2 onClick={()=>{
+                    const id = index.toString()
+                    onClickFilmTitle(id)}}>{film.title}</h2>
                   <p>{film.release_date}</p>
                 </div>
                 <div className="films_card_description">
