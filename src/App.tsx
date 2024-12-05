@@ -7,6 +7,7 @@ import { LoginPage } from "./modules/LoginPage/LoginPage";
 import { Footer } from "./Footer/Footer";
 import { Banner } from "./modules/Banner/Banner";
 import { RegistrationPage } from "./RegistrarionPage/RegistrationPage";
+import { FilmPage } from "./FilmPage/FilmPage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/login" element={<LoginPage />} index></Route>
         <Route path="/registration" element={<RegistrationPage/>}></Route>
+        <Route path="/film/:id" element={<FilmPage/>}></Route>
       </Route>
     </Routes>
   );

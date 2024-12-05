@@ -16,7 +16,7 @@ export const HomePage = () => {
   const navigate = useNavigate()
 
   const onClickFilmTitle = (id:string)=>{
-    navigate(`/film/${id}`)
+    navigate(`/film/id=${id}`)
   }
 
   useEffect(() => {
@@ -74,7 +74,9 @@ export const HomePage = () => {
               </div>
               <div className="films_card_title">
                 <div className="films_card__title">
-                  <h2>{film.title}</h2>
+                  <h2 onClick={()=>{
+                    const id = index.toString()
+                    onClickFilmTitle(id)}}>{film.title}</h2>
                   <p>{film.release_date}</p>
                 </div>
                 <div className="films_card_description">
