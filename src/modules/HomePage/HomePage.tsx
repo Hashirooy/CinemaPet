@@ -12,12 +12,14 @@ type HomePageProps = {
 
 export const HomePage = () => {
   const films = useFilmsStore((state) => state.films);
+  const { setCurrentFilm } = useFilmsStore((state) => state.actions);
   const [topFilms, setTopFilms] = useState<Film[]>([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const onClickFilmTitle = (id:string)=>{
-    navigate(`/film/id=${id}`)
-  }
+  const onClickFilmTitle = (id: string, film: Film) => {
+    setCurrentFilm(film);
+    navigate(`/film/id=${id}`);
+  };
 
   useEffect(() => {
     const getListFilm = async () => {
@@ -47,9 +49,14 @@ export const HomePage = () => {
               </div>
               <div className="films_card_title">
                 <div className="films_card__title">
-                  <h2 onClick={()=>{
-                    const id = index.toString()
-                    onClickFilmTitle(id)}}>{film.title}</h2>
+                  <h2
+                    onClick={() => {
+                      const id = index.toString();
+                      onClickFilmTitle(id, film);
+                    }}
+                  >
+                    {film.title}
+                  </h2>
                   <p>{film.release_date}</p>
                 </div>
                 <div className="films_card_description">
@@ -74,9 +81,14 @@ export const HomePage = () => {
               </div>
               <div className="films_card_title">
                 <div className="films_card__title">
-                  <h2 onClick={()=>{
-                    const id = index.toString()
-                    onClickFilmTitle(id)}}>{film.title}</h2>
+                  <h2
+                    onClick={() => {
+                      const id = index.toString();
+                      onClickFilmTitle(id, film);
+                    }}
+                  >
+                    {film.title}
+                  </h2>
                   <p>{film.release_date}</p>
                 </div>
                 <div className="films_card_description">
