@@ -12,7 +12,9 @@ export interface useFilmsStore {
   };
 }
 
-export const useFilmsStore = create<useFilmsStore>()((set, get) => ({
+export const useFilmsStore = create<useFilmsStore>()(
+  persist(
+    (set, get) => ({
   films: [],
   currentFilm: null,
   actions: {
@@ -23,4 +25,7 @@ export const useFilmsStore = create<useFilmsStore>()((set, get) => ({
       set((state) => ({ currentFilm: film || null })),
     getFilm: () => (get().currentFilm as Film) || null,
   },
+}),{
+  name: "plan-store",
+  storage:createJSONStorage(()=> sessionStorage),
 }));
