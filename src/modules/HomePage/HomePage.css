@@ -44,6 +44,8 @@
   font-size: 18px;
   font-weight: 500;
   line-height: 22px;
+  cursor: pointer;
+  opacity: 0.9;
 }
 
 .films_card_title p {

@@ -1,0 +1,24 @@
+.filmPage {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.filmPage__film {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+}
+.film_media_foto {
+  display: flex;
+  height: 300px;
+}
+
+.film__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.info {
+  display: flex;
+}
