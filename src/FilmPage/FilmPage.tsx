@@ -5,12 +5,11 @@ import { Film } from "../Film/Film";
 import "./FilmPage.css";
 
 export const FilmPage = () => {
-  const [isFilm, setIsFilm] = useState<Film>();
-  const { getFilm } = useFilmsStore((state) => state.actions);
+  const [isFilm, setIsFilm] = useState<Film | null>();
+  const film = useFilmsStore((state) => state.currentFilm);
 
   useEffect(() => {
     const getFilmFromStore = () => {
-      const film = getFilm();
       setIsFilm(film);
       console.log(isFilm);
     };
@@ -32,15 +31,19 @@ export const FilmPage = () => {
         <div className="film__info">
           <div className="info">
             <div className="info__about">
-              <h2>{isFilm?.title}</h2>
-              <p>{isFilm?.original_language}</p>
-              <p>{isFilm?.overview}</p>
+              <h2 className="film__info_title">{isFilm?.title}</h2>
+              <p className="film__info_lang">{isFilm?.original_language}</p>
+              <p className="film__info_overview">{isFilm?.overview}</p>
             </div>
             <div className="info__reviev">
-              <h3>{isFilm?.vote_average}</h3>
-              <p>{isFilm?.vote_count} оценок</p>
-              <button></button>
-              <p></p>
+              <h3 className="info__reviev_vote">{isFilm?.vote_average}</h3>
+              <p className="info__reviev_voteCount">
+                {isFilm?.vote_count} оценок
+              </p>
+              <div className="info__butt">
+                <button className="votefilm">Оценить фильм</button>
+              </div>
+              <p className="info__reviev_scale">34 рецензии</p>
             </div>
           </div>
           <div className="info_options">

@@ -17,6 +17,7 @@ export const HomePage = () => {
   const navigate = useNavigate();
 
   const onClickFilmTitle = (id: string, film: Film) => {
+    console.log(setCurrentFilm);
     setCurrentFilm(film);
     navigate(`/film/id=${id}`);
   };
